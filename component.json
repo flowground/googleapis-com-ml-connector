@@ -1,0 +1,356 @@
+{
+    "title": "Google Cloud Machine Learning Engine",
+    "description": "An API to enable creating and using machine learning models.",
+    "docsUrl": "https://cloud.google.com/ml/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/ml/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://ml.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ml_projects_models_versions_delete": {
+            "main": "./lib/actions/ml_projects_models_versions_delete.js",
+            "title": "Deletes a model version.\n\nEach model can have multiple versions deployed and in use at any given\ntime. Use this method to remove a single version.\n\nNote: You cannot delete the version that is set as the default version\nof the model unless it is the only remaining version.",
+            "description": "Deletes a model version.\n\nEach model can have multiple versions deployed and in use at any given\ntime. Use this method to remove a single version.\n\nNote: You cannot delete the version that is set as the default version\nof the model unless it is the only remaining version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_models_versions_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_get": {
+            "main": "./lib/actions/ml_projects_jobs_get.js",
+            "title": "Describes a job.",
+            "description": "Describes a job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_patch": {
+            "main": "./lib/actions/ml_projects_jobs_patch.js",
+            "title": "Updates a specific job resource.\n\nCurrently the only supported fields to update are `labels`.",
+            "description": "Updates a specific job resource.\n\nCurrently the only supported fields to update are `labels`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_operations_list": {
+            "main": "./lib/actions/ml_projects_operations_list.js",
+            "title": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+            "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_operations_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_cancel": {
+            "main": "./lib/actions/ml_projects_jobs_cancel.js",
+            "title": "Cancels a running job.",
+            "description": "Cancels a running job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_cancel.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_getConfig": {
+            "main": "./lib/actions/ml_projects_getConfig.js",
+            "title": "Get the service account information associated with your project. You need\nthis information in order to grant the service account persmissions for\nthe Google Cloud Storage location where you put your model training code\nfor training the model with Google Cloud Machine Learning.",
+            "description": "Get the service account information associated with your project. You need\nthis information in order to grant the service account persmissions for\nthe Google Cloud Storage location where you put your model training code\nfor training the model with Google Cloud Machine Learning.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_getConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_predict": {
+            "main": "./lib/actions/ml_projects_predict.js",
+            "title": "Performs prediction on the data in the request.\nCloud ML Engine implements a custom `predict` verb on top of an HTTP POST\nmethod. For details of the format, see the **guide to the\n[predict request format](/ml-engine/docs/v1/predict-request)**.",
+            "description": "Performs prediction on the data in the request.\nCloud ML Engine implements a custom `predict` verb on top of an HTTP POST\nmethod. For details of the format, see the **guide to the\n[predict request format](/ml-engine/docs/v1/predict-request)**.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_predict.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_models_versions_setDefault": {
+            "main": "./lib/actions/ml_projects_models_versions_setDefault.js",
+            "title": "Designates a version to be the default for the model.\n\nThe default version is used for prediction requests made against the model\nthat don't specify a version.\n\nThe first version to be created for a model is automatically set as the\ndefault. You must make any subsequent changes to the default version\nsetting manually using this method.",
+            "description": "Designates a version to be the default for the model.\n\nThe default version is used for prediction requests made against the model\nthat don't specify a version.\n\nThe first version to be created for a model is automatically set as the\ndefault. You must make any subsequent changes to the default version\nsetting manually using this method.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_models_versions_setDefault.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_list": {
+            "main": "./lib/actions/ml_projects_jobs_list.js",
+            "title": "Lists the jobs in the project.",
+            "description": "Lists the jobs in the project.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_create": {
+            "main": "./lib/actions/ml_projects_jobs_create.js",
+            "title": "Creates a training or a batch prediction job.",
+            "description": "Creates a training or a batch prediction job.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_locations_list": {
+            "main": "./lib/actions/ml_projects_locations_list.js",
+            "title": "List all locations that provides at least one type of CMLE capability.",
+            "description": "List all locations that provides at least one type of CMLE capability.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_locations_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_models_list": {
+            "main": "./lib/actions/ml_projects_models_list.js",
+            "title": "Lists the models in a project.\n\nEach project can contain multiple models, and each model can have multiple\nversions.",
+            "description": "Lists the models in a project.\n\nEach project can contain multiple models, and each model can have multiple\nversions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_models_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_models_create": {
+            "main": "./lib/actions/ml_projects_models_create.js",
+            "title": "Creates a model which will later contain one or more versions.\n\nYou must add at least one version before you can request predictions from\nthe model. Add versions by calling\n[projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.versions/create).",
+            "description": "Creates a model which will later contain one or more versions.\n\nYou must add at least one version before you can request predictions from\nthe model. Add versions by calling\n[projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.versions/create).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_models_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_models_versions_list": {
+            "main": "./lib/actions/ml_projects_models_versions_list.js",
+            "title": "Gets basic information about all the versions of a model.\n\nIf you expect that a model has a lot of versions, or if you need to handle\nonly a limited number of results at a time, you can request that the list\nbe retrieved in batches (called pages):",
+            "description": "Gets basic information about all the versions of a model.\n\nIf you expect that a model has a lot of versions, or if you need to handle\nonly a limited number of results at a time, you can request that the list\nbe retrieved in batches (called pages):",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_models_versions_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_models_versions_create": {
+            "main": "./lib/actions/ml_projects_models_versions_create.js",
+            "title": "Creates a new version of a model from a trained TensorFlow model.\n\nIf the version created in the cloud by this call is the first deployed\nversion of the specified model, it will be made the default version of the\nmodel. When you add a version to a model that already has one or more\nversions, the default version does not automatically change. If you want a\nnew version to be the default, you must call\n[projects.models.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).",
+            "description": "Creates a new version of a model from a trained TensorFlow model.\n\nIf the version created in the cloud by this call is the first deployed\nversion of the specified model, it will be made the default version of the\nmodel. When you add a version to a model that already has one or more\nversions, the default version does not automatically change. If you want a\nnew version to be the default, you must call\n[projects.models.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_models_versions_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_getIamPolicy": {
+            "main": "./lib/actions/ml_projects_jobs_getIamPolicy.js",
+            "title": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+            "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_getIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_setIamPolicy": {
+            "main": "./lib/actions/ml_projects_jobs_setIamPolicy.js",
+            "title": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+            "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_setIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ml_projects_jobs_testIamPermissions": {
+            "main": "./lib/actions/ml_projects_jobs_testIamPermissions.js",
+            "title": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+            "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a NOT_FOUND error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ml_projects_jobs_testIamPermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

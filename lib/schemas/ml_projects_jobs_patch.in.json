@@ -1,0 +1,435 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "updateMask": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "bearer_token": {
+            "type": "string"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "pp": {
+            "type": "boolean",
+            "default": true
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a training or prediction job.",
+            "properties": {
+                "createTime": {
+                    "description": "Output only. When the job was created.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "endTime": {
+                    "description": "Output only. When the job processing was completed.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "description": "Output only. The details of a failure or a cancellation.",
+                    "type": "string"
+                },
+                "etag": {
+                    "description": "`etag` is used for optimistic concurrency control as a way to help\nprevent simultaneous updates of a job from overwriting each other.\nIt is strongly suggested that systems make use of the `etag` in the\nread-modify-write cycle to perform job updates in order to avoid race\nconditions: An `etag` is returned in the response to `GetJob`, and\nsystems are expected to put that etag in the request to `UpdateJob` to\nensure that their change will be applied to the same version of the job.",
+                    "format": "byte",
+                    "type": "string"
+                },
+                "jobId": {
+                    "description": "Required. The user-specified id of the job.",
+                    "type": "string"
+                },
+                "labels": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optional. One or more labels that you can add, to organize your jobs.\nEach label is a key-value pair, where both the key and the value are\narbitrary strings that you supply.\nFor more information, see the documentation on\n<a href=\"/ml-engine/docs/how-tos/resource-labels\">using labels</a>.",
+                    "type": "object"
+                },
+                "predictionInput": {
+                    "description": "Input parameters to create a prediction job.",
+                    "properties": {
+                        "batchSize": {
+                            "description": "Optional. Number of records per batch, defaults to 64.\nThe service will buffer batch_size number of records in memory before\ninvoking one Tensorflow prediction call internally. So take the record\nsize and memory available into consideration when setting this parameter.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "dataFormat": {
+                            "description": "Required. The format of the input data files.",
+                            "enum": [
+                                "DATA_FORMAT_UNSPECIFIED",
+                                "JSON",
+                                "TEXT",
+                                "TF_RECORD",
+                                "TF_RECORD_GZIP"
+                            ],
+                            "type": "string"
+                        },
+                        "inputPaths": {
+                            "description": "Required. The Google Cloud Storage location of the input data files.\nMay contain wildcards.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "maxWorkerCount": {
+                            "description": "Optional. The maximum number of workers to be used for parallel processing.\nDefaults to 10 if not specified.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "modelName": {
+                            "description": "Use this field if you want to use the default version for the specified\nmodel. The string must use the following format:\n\n`\"projects/<var>[YOUR_PROJECT]</var>/models/<var>[YOUR_MODEL]</var>\"`",
+                            "type": "string"
+                        },
+                        "outputPath": {
+                            "description": "Required. The output Google Cloud Storage location.",
+                            "type": "string"
+                        },
+                        "region": {
+                            "description": "Required. The Google Compute Engine region to run the prediction job in.",
+                            "type": "string"
+                        },
+                        "runtimeVersion": {
+                            "description": "Optional. The Google Cloud ML runtime version to use for this batch\nprediction. If not set, Google Cloud ML will pick the runtime version used\nduring the CreateVersion request for this model version, or choose the\nlatest stable version when model version information is not available\nsuch as when the model is specified by uri.",
+                            "type": "string"
+                        },
+                        "signatureName": {
+                            "description": "Optional. The name of the signature defined in the SavedModel to use for\nthis job. Please refer to\n[SavedModel](https://tensorflow.github.io/serving/serving_basic.html)\nfor information about how to use signatures.\n\nDefaults to\n[DEFAULT_SERVING_SIGNATURE_DEF_KEY](https://www.tensorflow.org/api_docs/python/tf/saved_model/signature_constants)\n, which is \"serving_default\".",
+                            "type": "string"
+                        },
+                        "uri": {
+                            "description": "Use this field if you want to specify a Google Cloud Storage path for\nthe model to use.",
+                            "type": "string"
+                        },
+                        "versionName": {
+                            "description": "Use this field if you want to specify a version of the model to use. The\nstring is formatted the same way as `model_version`, with the addition\nof the version information:\n\n`\"projects/<var>[YOUR_PROJECT]</var>/models/<var>YOUR_MODEL/versions/<var>[YOUR_VERSION]</var>\"`",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "predictionOutput": {
+                    "description": "The current prediction job result.",
+                    "properties": {
+                        "errorCount": {
+                            "description": "The number of data instances which resulted in errors.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "nodeHours": {
+                            "description": "Node hours used by the batch prediction job.",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "outputPath": {
+                            "description": "The output Google Cloud Storage location provided at the job creation time.",
+                            "type": "string"
+                        },
+                        "predictionCount": {
+                            "description": "The number of generated predictions.",
+                            "format": "int64",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "startTime": {
+                    "description": "Output only. When the job processing was started.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "Output only. The detailed state of a job.",
+                    "enum": [
+                        "STATE_UNSPECIFIED",
+                        "QUEUED",
+                        "PREPARING",
+                        "RUNNING",
+                        "SUCCEEDED",
+                        "FAILED",
+                        "CANCELLING",
+                        "CANCELLED"
+                    ],
+                    "type": "string"
+                },
+                "trainingInput": {
+                    "description": "Input parameters to create a training job.",
+                    "properties": {
+                        "args": {
+                            "description": "Optional. Command line arguments to pass to the program.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "hyperparameters": {
+                            "description": "Optional. The set of Hyperparameters to tune.",
+                            "properties": {
+                                "goal": {
+                                    "description": "Required. The type of goal to use for tuning. Available types are\n`MAXIMIZE` and `MINIMIZE`.\n\nDefaults to `MAXIMIZE`.",
+                                    "enum": [
+                                        "GOAL_TYPE_UNSPECIFIED",
+                                        "MAXIMIZE",
+                                        "MINIMIZE"
+                                    ],
+                                    "type": "string"
+                                },
+                                "hyperparameterMetricTag": {
+                                    "description": "Optional. The Tensorflow summary tag name to use for optimizing trials. For\ncurrent versions of Tensorflow, this tag name should exactly match what is\nshown in Tensorboard, including all scopes.  For versions of Tensorflow\nprior to 0.12, this should be only the tag passed to tf.Summary.\nBy default, \"training/hptuning/metric\" will be used.",
+                                    "type": "string"
+                                },
+                                "maxParallelTrials": {
+                                    "description": "Optional. The number of training trials to run concurrently.\nYou can reduce the time it takes to perform hyperparameter tuning by adding\ntrials in parallel. However, each trail only benefits from the information\ngained in completed trials. That means that a trial does not get access to\nthe results of trials running at the same time, which could reduce the\nquality of the overall optimization.\n\nEach trial will use the same scale tier and machine types.\n\nDefaults to one.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "maxTrials": {
+                                    "description": "Optional. How many training trials should be attempted to optimize\nthe specified hyperparameters.\n\nDefaults to one.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "params": {
+                                    "description": "Required. The set of parameters to tune.",
+                                    "items": {
+                                        "description": "Represents a single hyperparameter to optimize.",
+                                        "properties": {
+                                            "categoricalValues": {
+                                                "description": "Required if type is `CATEGORICAL`. The list of possible categories.",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "discreteValues": {
+                                                "description": "Required if type is `DISCRETE`.\nA list of feasible points.\nThe list should be in strictly increasing order. For instance, this\nparameter might have possible settings of 1.5, 2.5, and 4.0. This list\nshould not contain more than 1,000 values.",
+                                                "items": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "maxValue": {
+                                                "description": "Required if typeis `DOUBLE` or `INTEGER`. This field\nshould be unset if type is `CATEGORICAL`. This value should be integers if\ntype is `INTEGER`.",
+                                                "format": "double",
+                                                "type": "number"
+                                            },
+                                            "minValue": {
+                                                "description": "Required if type is `DOUBLE` or `INTEGER`. This field\nshould be unset if type is `CATEGORICAL`. This value should be integers if\ntype is INTEGER.",
+                                                "format": "double",
+                                                "type": "number"
+                                            },
+                                            "parameterName": {
+                                                "description": "Required. The parameter name must be unique amongst all ParameterConfigs in\na HyperparameterSpec message. E.g., \"learning_rate\".",
+                                                "type": "string"
+                                            },
+                                            "scaleType": {
+                                                "description": "Optional. How the parameter should be scaled to the hypercube.\nLeave unset for categorical parameters.\nSome kind of scaling is strongly recommended for real or integral\nparameters (e.g., `UNIT_LINEAR_SCALE`).",
+                                                "enum": [
+                                                    "NONE",
+                                                    "UNIT_LINEAR_SCALE",
+                                                    "UNIT_LOG_SCALE",
+                                                    "UNIT_REVERSE_LOG_SCALE"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "Required. The type of the parameter.",
+                                                "enum": [
+                                                    "PARAMETER_TYPE_UNSPECIFIED",
+                                                    "DOUBLE",
+                                                    "INTEGER",
+                                                    "CATEGORICAL",
+                                                    "DISCRETE"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "jobDir": {
+                            "description": "Optional. A Google Cloud Storage path in which to store training outputs\nand other data needed for training. This path is passed to your TensorFlow\nprogram as the 'job_dir' command-line argument. The benefit of specifying\nthis field is that Cloud ML validates the path for use in training.",
+                            "type": "string"
+                        },
+                        "masterType": {
+                            "description": "Optional. Specifies the type of virtual machine to use for your training\njob's master worker.\n\nThe following types are supported:\n\n<dl>\n  <dt>standard</dt>\n  <dd>\n  A basic machine configuration suitable for training simple models with\n  small to moderate datasets.\n  </dd>\n  <dt>large_model</dt>\n  <dd>\n  A machine with a lot of memory, specially suited for parameter servers\n  when your model is large (having many hidden layers or layers with very\n  large numbers of nodes).\n  </dd>\n  <dt>complex_model_s</dt>\n  <dd>\n  A machine suitable for the master and workers of the cluster when your\n  model requires more computation than the standard machine can handle\n  satisfactorily.\n  </dd>\n  <dt>complex_model_m</dt>\n  <dd>\n  A machine with roughly twice the number of cores and roughly double the\n  memory of <code suppresswarning=\"true\">complex_model_s</code>.\n  </dd>\n  <dt>complex_model_l</dt>\n  <dd>\n  A machine with roughly twice the number of cores and roughly double the\n  memory of <code suppresswarning=\"true\">complex_model_m</code>.\n  </dd>\n  <dt>standard_gpu</dt>\n  <dd>\n  A machine equivalent to <code suppresswarning=\"true\">standard</code> that\n  also includes a single NVIDIA Tesla K80 GPU. See more about\n  <a href=\"/ml-engine/docs/how-tos/using-gpus\">\n  using GPUs for training your model</a>.\n  </dd>\n  <dt>complex_model_m_gpu</dt>\n  <dd>\n  A machine equivalent to\n  <code suppresswarning=\"true\">complex_model_m</code> that also includes\n  four NVIDIA Tesla K80 GPUs.\n  </dd>\n  <dt>complex_model_l_gpu</dt>\n  <dd>\n  A machine equivalent to\n  <code suppresswarning=\"true\">complex_model_l</code> that also includes\n  eight NVIDIA Tesla K80 GPUs.\n  </dd>\n  <dt>standard_p100</dt>\n  <dd>\n  A machine equivalent to <code suppresswarning=\"true\">standard</code> that\n  also includes a single NVIDIA Tesla P100 GPU. The availability of these\n  GPUs is in the Alpha launch stage.\n  </dd>\n  <dt>complex_model_m_p100</dt>\n  <dd>\n  A machine equivalent to\n  <code suppresswarning=\"true\">complex_model_m</code> that also includes\n  four NVIDIA Tesla P100 GPUs. The availability of these GPUs is in\n  the Alpha launch stage.\n  </dd>\n</dl>\n\nYou must set this value when `scaleTier` is set to `CUSTOM`.",
+                            "type": "string"
+                        },
+                        "packageUris": {
+                            "description": "Required. The Google Cloud Storage location of the packages with\nthe training program and any additional dependencies.\nThe maximum number of package URIs is 100.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "parameterServerCount": {
+                            "description": "Optional. The number of parameter server replicas to use for the training\njob. Each replica in the cluster will be of the type specified in\n`parameter_server_type`.\n\nThis value can only be used when `scale_tier` is set to `CUSTOM`.If you\nset this value, you must also set `parameter_server_type`.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "parameterServerType": {
+                            "description": "Optional. Specifies the type of virtual machine to use for your training\njob's parameter server.\n\nThe supported values are the same as those described in the entry for\n`master_type`.\n\nThis value must be present when `scaleTier` is set to `CUSTOM` and\n`parameter_server_count` is greater than zero.",
+                            "type": "string"
+                        },
+                        "pythonModule": {
+                            "description": "Required. The Python module name to run after installing the packages.",
+                            "type": "string"
+                        },
+                        "pythonVersion": {
+                            "description": "Optional. The version of Python used in training. If not set, the default\nversion is '2.7'.",
+                            "type": "string"
+                        },
+                        "region": {
+                            "description": "Required. The Google Compute Engine region to run the training job in.",
+                            "type": "string"
+                        },
+                        "runtimeVersion": {
+                            "description": "Optional. The Google Cloud ML runtime version to use for training.  If not\nset, Google Cloud ML will choose the latest stable version.",
+                            "type": "string"
+                        },
+                        "scaleTier": {
+                            "description": "Required. Specifies the machine types, the number of replicas for workers\nand parameter servers.",
+                            "enum": [
+                                "BASIC",
+                                "STANDARD_1",
+                                "PREMIUM_1",
+                                "BASIC_GPU",
+                                "BASIC_TPU",
+                                "CUSTOM"
+                            ],
+                            "type": "string"
+                        },
+                        "workerCount": {
+                            "description": "Optional. The number of worker replicas to use for the training job. Each\nreplica in the cluster will be of the type specified in `worker_type`.\n\nThis value can only be used when `scale_tier` is set to `CUSTOM`. If you\nset this value, you must also set `worker_type`.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "workerType": {
+                            "description": "Optional. Specifies the type of virtual machine to use for your training\njob's worker nodes.\n\nThe supported values are the same as those described in the entry for\n`masterType`.\n\nThis value must be present when `scaleTier` is set to `CUSTOM` and\n`workerCount` is greater than zero.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "trainingOutput": {
+                    "description": "The current training job result.",
+                    "properties": {
+                        "completedTrialCount": {
+                            "description": "The number of hyperparameter tuning trials that completed successfully.\nOnly set for hyperparameter tuning jobs.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "consumedMLUnits": {
+                            "description": "The amount of ML units consumed by the job.",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "isHyperparameterTuningJob": {
+                            "description": "Whether this job is a hyperparameter tuning job.",
+                            "type": "boolean"
+                        },
+                        "trials": {
+                            "description": "Results for individual Hyperparameter trials.\nOnly set for hyperparameter tuning jobs.",
+                            "items": {
+                                "description": "Represents the result of a single hyperparameter tuning trial from a\ntraining job. The TrainingOutput object that is returned on successful\ncompletion of a training job with hyperparameter tuning includes a list\nof HyperparameterOutput objects, one for each successful trial.",
+                                "properties": {
+                                    "allMetrics": {
+                                        "description": "All recorded object metrics for this trial. This field is not currently\npopulated.",
+                                        "items": {
+                                            "description": "An observed value of a metric.",
+                                            "properties": {
+                                                "objectiveValue": {
+                                                    "description": "The objective value at this training step.",
+                                                    "format": "double",
+                                                    "type": "number"
+                                                },
+                                                "trainingStep": {
+                                                    "description": "The global training step for this metric.",
+                                                    "format": "int64",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "finalMetric": {
+                                        "description": "The final objective metric seen for this trial.",
+                                        "properties": {
+                                            "objectiveValue": {
+                                                "description": "The objective value at this training step.",
+                                                "format": "double",
+                                                "type": "number"
+                                            },
+                                            "trainingStep": {
+                                                "description": "The global training step for this metric.",
+                                                "format": "int64",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "hyperparameters": {
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "The hyperparameters given to this trial.",
+                                        "type": "object"
+                                    },
+                                    "trialId": {
+                                        "description": "The trial id for these results.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
